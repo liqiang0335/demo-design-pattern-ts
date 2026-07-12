@@ -1,13 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
+import type { OrderRepository } from '../../domain/order.repository';
 import type { CommandHandler } from '../command-handler';
+import { OrderNotFoundError } from '../errors/order-not-found.error';
 import type { InventoryService } from '../ports/inventory.service';
 import { INVENTORY_SERVICE, ORDER_REPOSITORY } from '../tokens';
-import type { OrderRepository } from '../../domain/order.repository';
-import { OrderNotFoundError } from '../errors/order-not-found.error';
-import {
-  CancelOrderCommand,
-  type CancelOrderResult,
-} from './cancel-order.command';
+import { CancelOrderCommand, type CancelOrderResult, } from './cancel-order.command';
 
 /**
  * 取消订单的应用服务。
