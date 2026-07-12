@@ -1,0 +1,1 @@
+{"version":3,"file":"domain-rule-violation.error.js","sourceRoot":"","sources":["../../src/domain/domain-rule-violation.error.ts"],"names":[],"mappings":";;;AAIA,MAAa,wBAAyB,SAAQ,KAAK;IAEjD,YAAmB,OAAe;QAChC,KAAK,CAAC,OAAO,CAAC,CAAC;QACf,IAAI,CAAC,IAAI,GAAG,wBAAwB,CAAC,IAAI,CAAC;IAC5C,CAAC;CACF;AAND,4DAMC"}
