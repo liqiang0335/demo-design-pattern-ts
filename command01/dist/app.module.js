@@ -8,19 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const app_controller_1 = require("./app.controller");
+const app_service_1 = require("./app.service");
 const command_bus_1 = require("./application/command-bus");
 const cancel_order_handler_1 = require("./application/commands/cancel-order.handler");
 const refund_order_handler_1 = require("./application/commands/refund-order.handler");
 const idempotent_command_bus_1 = require("./application/idempotent-command-bus");
 const tokens_1 = require("./application/tokens");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
 const in_memory_command_execution_repository_1 = require("./infrastructure/in-memory-command-execution.repository");
 const in_memory_inventory_service_1 = require("./infrastructure/in-memory-inventory.service");
 const in_memory_order_repository_1 = require("./infrastructure/in-memory-order.repository");
 const in_memory_payment_gateway_1 = require("./infrastructure/in-memory-payment.gateway");
-const orders_controller_1 = require("./orders/orders.controller");
 const order_query_service_1 = require("./orders/order-query.service");
+const orders_controller_1 = require("./orders/orders.controller");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -37,22 +37,10 @@ exports.AppModule = AppModule = __decorate([
             in_memory_inventory_service_1.InMemoryInventoryService,
             in_memory_payment_gateway_1.InMemoryPaymentGateway,
             in_memory_command_execution_repository_1.InMemoryCommandExecutionRepository,
-            {
-                provide: tokens_1.ORDER_REPOSITORY,
-                useExisting: in_memory_order_repository_1.InMemoryOrderRepository,
-            },
-            {
-                provide: tokens_1.INVENTORY_SERVICE,
-                useExisting: in_memory_inventory_service_1.InMemoryInventoryService,
-            },
-            {
-                provide: tokens_1.PAYMENT_GATEWAY,
-                useExisting: in_memory_payment_gateway_1.InMemoryPaymentGateway,
-            },
-            {
-                provide: tokens_1.COMMAND_EXECUTION_REPOSITORY,
-                useExisting: in_memory_command_execution_repository_1.InMemoryCommandExecutionRepository,
-            },
+            { provide: tokens_1.ORDER_REPOSITORY, useExisting: in_memory_order_repository_1.InMemoryOrderRepository },
+            { provide: tokens_1.INVENTORY_SERVICE, useExisting: in_memory_inventory_service_1.InMemoryInventoryService, },
+            { provide: tokens_1.PAYMENT_GATEWAY, useExisting: in_memory_payment_gateway_1.InMemoryPaymentGateway, },
+            { provide: tokens_1.COMMAND_EXECUTION_REPOSITORY, useExisting: in_memory_command_execution_repository_1.InMemoryCommandExecutionRepository, },
             {
                 provide: command_bus_1.CommandBus,
                 inject: [cancel_order_handler_1.CancelOrderHandler, refund_order_handler_1.RefundOrderHandler],
