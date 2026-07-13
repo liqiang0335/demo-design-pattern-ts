@@ -1,9 +1,4 @@
-import {
-  ArgumentsHost,
-  Catch,
-  type ExceptionFilter,
-  HttpStatus,
-} from '@nestjs/common';
+import { ArgumentsHost, Catch, type ExceptionFilter, HttpStatus } from '@nestjs/common';
 import type { Response } from 'express';
 import { CommandAlreadyProcessingError } from '../application/errors/command-already-processing.error';
 import { CommandHandlerNotFoundError } from '../application/errors/command-handler-not-found.error';

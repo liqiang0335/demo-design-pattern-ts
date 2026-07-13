@@ -1,24 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { DomainRuleViolationError } from '../../domain/domain-rule-violation.error';
+import type { OrderRepository } from '../../domain/order.repository';
 import type { CommandHandler } from '../command-handler';
 import { OrderNotFoundError } from '../errors/order-not-found.error';
 import type { PaymentGateway } from '../ports/payment-gateway';
-import { ORDER_REPOSITORY, PAYMENT_GATEWAY } from '../tokens';
-import { DomainRuleViolationError } from '../../domain/domain-rule-violation.error';
-import type { OrderRepository } from '../../domain/order.repository';
-import {
-  RefundOrderCommand,
-  type RefundOrderResult,
-} from './refund-order.command';
+import { ORDER_REPOSITORY, PAYMENT_GATEWAY } from '../../domain/tokens';
+import { RefundOrderCommand, type RefundOrderResult } from './refund-order.command';
 
 /**
  * 退款订单的应用服务。
  * 与取消 Handler 分离后，退款特有的金额与支付流水校验不会污染其他业务动作。
  */
 @Injectable()
-export class RefundOrderHandler implements CommandHandler<
-  RefundOrderCommand,
-  RefundOrderResult
-> {
+export class RefundOrderHandler implements CommandHandler<RefundOrderCommand, RefundOrderResult> {
   public readonly commandType = 'order.refund.v1' as const;
 
   /** 通过端口依赖订单仓储和支付网关，而非依赖具体基础设施实现。 */
@@ -33,9 +27,7 @@ export class RefundOrderHandler implements CommandHandler<
    * 先由领域对象验证退款资格，再调用支付网关，最后保存新状态。
    * 真实项目还应通过 Outbox 或 Saga 处理“支付成功但数据库保存失败”的跨系统一致性问题。
    */
-  public async execute(
-    command: RefundOrderCommand,
-  ): Promise<RefundOrderResult> {
+  public async execute(command: RefundOrderCommand): Promise<RefundOrderResult> {
     const order = await this.orderRepository.findById(command.orderId);
 
     if (!order) {

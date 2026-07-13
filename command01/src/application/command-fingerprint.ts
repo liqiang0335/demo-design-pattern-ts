@@ -5,9 +5,7 @@ import type { Command } from './command';
  * 为命令生成稳定的请求指纹。
  * 幂等键相同并不代表请求一定相同，因此记录中还必须比对完整命令载荷。
  */
-export function createCommandFingerprint<TResult>(
-  command: Command<TResult>,
-): string {
+export function createCommandFingerprint<TResult>(command: Command<TResult>): string {
   return createHash('sha256').update(stableSerialize(command)).digest('hex');
 }
 

@@ -22,9 +22,7 @@ export class CommandBus implements CommandExecutor {
    * 注册一个命令处理器。
    * 同一 Token 对应多个 Handler 会导致行为不确定，因此启动阶段立即失败。
    */
-  public register<TResult, TCommand extends Command<TResult>>(
-    handler: CommandHandler<TCommand, TResult>,
-  ): void {
+  public register<TResult, TCommand extends Command<TResult>>(handler: CommandHandler<TCommand, TResult>,): void {
     if (this.handlers.has(handler.commandType)) {
       throw new Error(`命令处理器重复注册：${handler.commandType}`);
     }

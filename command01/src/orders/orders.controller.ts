@@ -1,18 +1,8 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Inject,
-  Param,
-  Post,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Param, Post, ValidationPipe } from '@nestjs/common';
 import { CancelOrderCommand } from '../application/commands/cancel-order.command';
 import { RefundOrderCommand } from '../application/commands/refund-order.command';
 import type { CommandExecutor } from '../application/command-executor';
-import { COMMAND_EXECUTOR } from '../application/tokens';
+import { COMMAND_EXECUTOR } from '../domain/tokens';
 import { CommandMetadata } from '../interfaces/command-metadata.decorator';
 import { CommandMetadataDto } from './dto/command-metadata.dto';
 import { CancelOrderRequestDto } from './dto/cancel-order-request.dto';
