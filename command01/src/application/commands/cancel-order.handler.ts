@@ -3,7 +3,7 @@ import type { OrderRepository } from '../../domain/order.repository';
 import type { CommandHandler } from '../command-handler';
 import { OrderNotFoundError } from '../errors/order-not-found.error';
 import type { InventoryService } from '../ports/inventory.service';
-import { INVENTORY_SERVICE, ORDER_REPOSITORY } from '../tokens';
+import { INVENTORY_SERVICE, ORDER_REPOSITORY } from '../../domain/tokens';
 import { CancelOrderCommand, type CancelOrderResult, } from './cancel-order.command';
 
 /**

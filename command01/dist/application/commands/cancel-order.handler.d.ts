@@ -1,6 +1,6 @@
+import type { OrderRepository } from '../../domain/order.repository';
 import type { CommandHandler } from '../command-handler';
 import type { InventoryService } from '../ports/inventory.service';
-import type { OrderRepository } from '../../domain/order.repository';
 import { CancelOrderCommand, type CancelOrderResult } from './cancel-order.command';
 export declare class CancelOrderHandler implements CommandHandler<CancelOrderCommand, CancelOrderResult> {
     private readonly orderRepository;

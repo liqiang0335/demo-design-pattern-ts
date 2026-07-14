@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { DomainRuleViolationError } from '../../domain/domain-rule-violation.error';
+import type { OrderRepository } from '../../domain/order.repository';
 import type { CommandHandler } from '../command-handler';
 import { OrderNotFoundError } from '../errors/order-not-found.error';
 import type { PaymentGateway } from '../ports/payment-gateway';
-import { ORDER_REPOSITORY, PAYMENT_GATEWAY } from '../tokens';
-import { DomainRuleViolationError } from '../../domain/domain-rule-violation.error';
-import type { OrderRepository } from '../../domain/order.repository';
+import { ORDER_REPOSITORY, PAYMENT_GATEWAY } from '../../domain/tokens';
 import { RefundOrderCommand, type RefundOrderResult } from './refund-order.command';
 
 /**

@@ -7,7 +7,7 @@ import type { CommandExecutor } from './application/command-executor';
 import { CancelOrderHandler } from './application/commands/cancel-order.handler';
 import { RefundOrderHandler } from './application/commands/refund-order.handler';
 import { IdempotentCommandBus } from './application/idempotent-command-bus';
-import { COMMAND_EXECUTION_REPOSITORY, COMMAND_EXECUTOR, INVENTORY_SERVICE, ORDER_REPOSITORY, PAYMENT_GATEWAY } from './application/tokens';
+import { COMMAND_EXECUTION_REPOSITORY, COMMAND_EXECUTOR, INVENTORY_SERVICE, ORDER_REPOSITORY, PAYMENT_GATEWAY } from './domain/tokens';
 import { InMemoryCommandExecutionRepository } from './infrastructure/in-memory-command-execution.repository';
 import { InMemoryInventoryService } from './infrastructure/in-memory-inventory.service';
 import { InMemoryOrderRepository } from './infrastructure/in-memory-order.repository';

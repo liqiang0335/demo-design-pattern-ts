@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { OrderNotFoundError } from '../application/errors/order-not-found.error';
-import { ORDER_REPOSITORY } from '../application/tokens';
+import { ORDER_REPOSITORY } from '../domain/tokens';
 import type { OrderRepository } from '../domain/order.repository';
 
 /** 简单订单读取返回的数据形状。 */
