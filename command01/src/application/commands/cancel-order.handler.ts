@@ -11,10 +11,7 @@ import { CancelOrderCommand, type CancelOrderResult, } from './cancel-order.comm
  * Handler 负责编排仓储、领域对象和下游库存服务，不在 Controller 中散落业务流程。
  */
 @Injectable()
-export class CancelOrderHandler implements CommandHandler<
-  CancelOrderCommand,
-  CancelOrderResult
-> {
+export class CancelOrderHandler implements CommandHandler<CancelOrderCommand, CancelOrderResult> {
   public readonly commandType = 'order.cancel.v1' as const;
 
   /** 通过 Symbol Token 注入运行时不存在的 TypeScript 接口。 */
@@ -29,9 +26,7 @@ export class CancelOrderHandler implements CommandHandler<
    * 加载订单、执行状态转换、释放库存，再保存变更。
    * 命令 ID 同时传入库存系统，使下游调用具备独立的幂等保障。
    */
-  public async execute(
-    command: CancelOrderCommand,
-  ): Promise<CancelOrderResult> {
+  public async execute(command: CancelOrderCommand): Promise<CancelOrderResult> {
     const order = await this.orderRepository.findById(command.orderId);
 
     if (!order) {
